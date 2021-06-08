@@ -26,17 +26,12 @@ export class InventoryReport extends React.Component<any, any> {
             <>
                 <Row>
                     <Col md={{ span: 6, offset: 1 }}>
-                        <h4 >Inventory Report</h4>
-                    </Col>
-                    <Col>
-                        <button onClick={() => this.toggleReport()}>
-                            Toggle
-                        </button>
+                        <h4 onClick={() => this.toggleReport()}>Inventory Report</h4>
                     </Col>
                 </Row>
                 {(this.state.showFlag === true) ? (
                     <Row>
-                        <Col md={{ span: 10, offset: 1 }}>
+                        <Col md={{ span: 10, offset: 2 }}>
                             <table className="table">
                                 <thead>
                                     <tr>
@@ -45,7 +40,7 @@ export class InventoryReport extends React.Component<any, any> {
                                 </thead>
                                 <tbody>
                                     {this.props.inventoryList.map((item: Item) => (
-                                        <tr>
+                                        <tr key={item.desc}>
                                             <td>{item.desc}</td>
                                             <td>{item.cls}</td>
                                             <td>{item.cost}</td>

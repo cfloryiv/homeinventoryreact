@@ -1,6 +1,28 @@
 h4 {
-  background-color: lightgrey;
+  background-color: cyan;
   height: 2em;
 }
-
-
+h4:hover {
+  background-color: blue;
+}
+h5 {
+  background-color: red;
+}
+.card {
+  background-color: lightpink;
+}
+.table th {
+  background-color: mediumseagreen;
+}
+.table td {
+  background-color: lightgreen;
+}
+form {
+  background-color: yellow;
+}
+.form-control {
+  background-color: lightyellow;
+}
+span {
+  color: red;
+}

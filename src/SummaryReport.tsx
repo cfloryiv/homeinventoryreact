@@ -1,12 +1,31 @@
 import React from 'react';
-import {Col, Row} from 'react-bootstrap';
+import { SummaryCard } from './SummaryCard';
+import { Col, Row } from 'react-bootstrap';
 
-export function SummaryReport(props: {}) {
-    return (
-        <Row>
-            <Col md={{span: 6, offset: 1}}>
-            <h4>Summary Report</h4>
-            </Col>
-        </Row>
-    );
+export class SummaryReport extends React.Component {
+    state = {
+        showFlag: true
+    };
+    toggleReport() {
+        let newFlag = !this.state.showFlag;
+        this.setState({ showFlag: newFlag })
+    };
+    render() {
+        return (
+            <>
+                <Row>
+                    <Col md={{ span: 6, offset: 1 }}>
+                        <h4 onClick={() => this.toggleReport()}>Summary Report</h4>
+                    </Col>
+                </Row>
+                {(this.state.showFlag === true) ? (
+                    <Row>
+                        <SummaryCard type={"camera"} />
+                        <SummaryCard type={"printer"} />
+                        <SummaryCard type={"eBike"} />
+                    </Row>
+                ) : ""}
+            </>
+        );
+    }
 }
