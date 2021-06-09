@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Card, Form } from 'react-bootstrap';
 import { Form as Formx, Formik, Field, ErrorMessage } from 'formik';
-
+import {Values} from './Values';
 
 
 interface IProps {
@@ -9,12 +9,7 @@ interface IProps {
 }
 interface IState { }
 
-export interface Values {
-    desc: string,
-    cls: string,
-    cost: number,
-    status: string
-}
+
 export class NewInventoryItem extends React.Component<IProps, IState> {
 
     constructor(props: { onFormSubmit: CallableFunction }) {
@@ -31,8 +26,8 @@ export class NewInventoryItem extends React.Component<IProps, IState> {
         this.setState({ showFlag: newFlag })
     };
     handleSubmit(values: Values) {
-
-        this.props.onFormSubmit(values.desc, values.cls, values.cost, values.status);
+        this.props.onFormSubmit(values);
+        //this.props.onFormSubmit(values.desc, values.cls, values.cost, values.status);
         this.setState({ showFlag: false });
         return;
     }
@@ -43,6 +38,12 @@ export class NewInventoryItem extends React.Component<IProps, IState> {
         }
         if (!values.cls) {
             errors.cls = "You must enter a class";
+        }
+        if (!values.subtype) {
+            errors.subtype="You must enter a type";
+        }
+        if (values.qty<=0) {
+            errors.qty="Enter a postive quantity";
         }
         if (values.cost <= 0) {
             errors.cost = "Enter a positive cost";
@@ -68,7 +69,7 @@ export class NewInventoryItem extends React.Component<IProps, IState> {
                             <Card style={{ backgroundColor: 'lightgoldenrodyellow' }}>
                                 <h5 style={{ backgroundColor: 'orange' }}>New Item Form</h5>
                                 <Col md={{ span: 10, offset: 1 }}>
-                                    <Formik initialValues={{ desc: "", cls: "", cost: 0.00, status: "" }}
+                                    <Formik initialValues={{ desc: "", cls: "", subtype: "", qty: 1, cost: 1.00, status: "" }}
                                         onSubmit={this.handleSubmit}
                                         validate={this.handleValidation}
                                         render={({
@@ -91,6 +92,16 @@ export class NewInventoryItem extends React.Component<IProps, IState> {
                                                     <Form.Label>Class</Form.Label>
                                                     <Field className="form-control" name="cls" type="text" />
                                                     <ErrorMessage component="span" name="cls" />
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label>Type</Form.Label>
+                                                    <Field className="form-control" name="subtype" type="text" />
+                                                    <ErrorMessage component="span" name="subtype" />
+                                                </Form.Group>
+                                                <Form.Group>
+                                                    <Form.Label>Quantity</Form.Label>
+                                                    <Field className="form-control" name="qty" type="number" />
+                                                    <ErrorMessage component="span" name="qty" />
                                                 </Form.Group>
                                                 <Form.Group>
                                                     <Form.Label>Cost</Form.Label>

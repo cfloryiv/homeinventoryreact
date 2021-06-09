@@ -5,13 +5,15 @@ import { Row, Col } from 'react-bootstrap';
 interface Item {
     desc: string,
     cls: string,
+    subtype: string,
+    qty: number,
     cost: number,
     status: string
 }
 
 export class InventoryReport extends React.Component<any, any> {
 
-    constructor(props: { inventoryList: Item[], show: boolean }) {
+    constructor(props: { inventoryList: Item[]}) {
         super(props);
     }
     state = {
@@ -35,7 +37,7 @@ export class InventoryReport extends React.Component<any, any> {
                             <table className="table">
                                 <thead>
                                     <tr>
-                                        <th>Description</th><th>Class</th><th>Cost</th><th>Status</th>
+                                        <th>Description</th><th>Class</th><th>Type</th><th>Quantity</th><th>Cost</th><th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,6 +45,8 @@ export class InventoryReport extends React.Component<any, any> {
                                         <tr key={item.desc}>
                                             <td>{item.desc}</td>
                                             <td>{item.cls}</td>
+                                            <td>{item.subtype}</td>
+                                            <td>{item.qty}</td>
                                             <td>{item.cost}</td>
                                             <td>{item.status}</td>
                                         </tr>
