@@ -32,7 +32,7 @@ export function SummaryCard(props: { cls: string, inventoryList: Values[] }) {
     return (
         <>
             <Row>
-                <Col md={{span: 4, offset: 2}}>
+                <Col md={{span: 6, offset: 1}}>
                 
                     <table className="table">
                         <thead>

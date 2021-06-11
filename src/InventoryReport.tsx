@@ -1,19 +1,14 @@
 import { render } from '@testing-library/react';
 import React from 'react';
+import {Link} from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
+import {InventoryTable} from './InventoryTable';
+import {Values} from './Values';
 
-interface Item {
-    desc: string,
-    cls: string,
-    subtype: string,
-    qty: number,
-    cost: number,
-    status: string
-}
 
 export class InventoryReport extends React.Component<any, any> {
 
-    constructor(props: { inventoryList: Item[]}) {
+    constructor(props: { inventoryList: Values[]}) {
         super(props);
     }
     state = {
@@ -23,6 +18,9 @@ export class InventoryReport extends React.Component<any, any> {
         let newFlag = !this.state.showFlag;
         this.setState({ showFlag: newFlag })
     };
+    InventoryTablex = () => {
+        return (<InventoryTable inventoryList={this.props.inventoryList} />);
+    }
     render() {
         return (
             <>
@@ -32,31 +30,7 @@ export class InventoryReport extends React.Component<any, any> {
                     </Col>
                 </Row>
                 {(this.state.showFlag === true) ? (
-                    <Row>
-                        <Col md={{ span: 10, offset: 2 }}>
-                            <table className="table">
-                                <thead>
-                                    <tr>
-                                        <th>Description</th><th>Class</th><th>Type</th><th>Quantity</th><th>Cost</th><th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {this.props.inventoryList.map((item: Item) => (
-                                        <tr key={item.desc}>
-                                            <td>{item.desc}</td>
-                                            <td>{item.cls}</td>
-                                            <td>{item.subtype}</td>
-                                            <td>{item.qty}</td>
-                                            <td>{item.cost}</td>
-                                            <td>{item.status}</td>
-                                        </tr>
-                                    )
-
-                                    )}
-                                </tbody>
-                            </table>
-                        </Col>
-                    </Row>
+                    <Link to="/inventoryreport" />
                 ) : ""}
             </>
         );

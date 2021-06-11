@@ -17,18 +17,11 @@ export class SummaryReport extends React.Component<any, any> {
     render() {
         return (
             <>
-                <Row>
-                    <Col md={{ span: 6, offset: 1 }}>
-                        <h4 onClick={() => this.toggleReport()}>Summary Report</h4>
-                    </Col>
-                </Row>
-                {(this.state.showFlag === true) ? (
                     <Row>
                         <SummaryCard key={1} cls={"Camera"} inventoryList={this.props.inventoryList}/>
                         <SummaryCard key={2} cls={"Printer"} inventoryList={this.props.inventoryList}/>
                         <SummaryCard key={3} cls={"Bike"} inventoryList={this.props.inventoryList}/>
                     </Row>
-                ) : ""}
             </>
         );
     }
