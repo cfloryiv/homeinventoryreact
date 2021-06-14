@@ -1,6 +1,6 @@
-import { AnyAaaaRecord } from 'dns';
+
 import React from 'react';
-import { Card, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import {Values} from './Values';
 
 export function SummaryCard(props: { cls: string, inventoryList: Values[] }) {

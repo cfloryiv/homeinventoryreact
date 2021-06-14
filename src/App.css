@@ -26,3 +26,16 @@ form {
 span {
   color: red;
 }
+.cell {
+  border: 1px black solid;
+  height: 2em;
+  background-color: lightcoral;
+}
+.emptycell {
+  border: 1px black solid;
+  height: 2em;
+  background-color: lightgreen;
+}
+.timecell {
+  text-align: right;
+}

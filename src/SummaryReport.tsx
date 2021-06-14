@@ -1,11 +1,9 @@
 import React from 'react';
 import { SummaryCard } from './SummaryCard';
-import { Col, Row } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import {Values} from './Values';
 export class SummaryReport extends React.Component<any, any> {
-    constructor(props: { inventoryList: Values[]}) {
-        super(props);
-    }
+
 
     state = {
         showFlag: true

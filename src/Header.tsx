@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Row, Col } from 'react-bootstrap';
+import { Jumbotron} from 'react-bootstrap';
 
 export function Header() {
     return (

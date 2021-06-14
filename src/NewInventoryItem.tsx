@@ -54,7 +54,8 @@ export class NewInventoryItem extends React.Component<IProps, IState> {
         return errors;
     }
     render() {
-
+        let subtypes=["bike", "tire_pump", "saddle_bags", "camera_body", "lens", "battery", "tripod", "case", "backpack", "printer", "paper", "ink_cart"];
+        subtypes.sort();
         return (
             <>
                 <Row>
@@ -92,7 +93,13 @@ export class NewInventoryItem extends React.Component<IProps, IState> {
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label>Type</Form.Label>
-                                                <Field className="form-control" name="subtype" type="text" />
+                                                <Field as="select" name="subtype">
+                                                    {
+                                                        subtypes.map((typex: string) => (
+                                                            <option value={typex}>{typex}</option>
+                                                        ))
+                                                        }
+                                                </Field>
                                                 <ErrorMessage component="span" name="subtype" />
                                             </Form.Group>
                                             <Form.Group>

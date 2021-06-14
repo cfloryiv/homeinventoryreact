@@ -1,13 +1,12 @@
 import React from 'react';
-import axios from 'axios';
 import { Route} from 'react-router-dom';
 
-import { InventoryReport } from './InventoryReport';
 import {InventoryTable} from './InventoryTable';
 import { SummaryReport } from './SummaryReport';
 import { NewInventoryItem} from './NewInventoryItem';
 import {Header} from './Header';
 import {Navigation} from './Navagation';
+import {Schedule} from './Schedule';
 import { Container } from 'react-bootstrap';
 import {Values} from './Values';
 
@@ -64,6 +63,7 @@ class App extends React.Component {
         <Route exact path='/inventoryreport' component={this.InventoryReportx} />
         <Route exact path='/inventorysummary' component ={this.InventorySummaryx}/>
         <Route exact path='/inventoryform' component={this.NewInventoryItemx}/>
+        <Route exact path='/schedule' component={Schedule}/>
       </Container>
     );
   }

@@ -1,7 +1,7 @@
 import React from 'react';
-import {Link, useHistory} from 'react-router-dom';
-import { Jumbotron, Row, Col } from 'react-bootstrap';
-import { InventoryTable } from './InventoryTable';
+import { useHistory} from 'react-router-dom';
+import { Row, Col } from 'react-bootstrap';
+
 
 export function Navigation() {
 
@@ -28,7 +28,11 @@ export function Navigation() {
              <h4 onClick={() => handleLink('/inventoryform')}>New Inventory Item</h4>
          </Col>
      </Row>
-     
+     <Row>
+         <Col md={{ span: 6, offset: 1 }}>
+             <h4 onClick={() => handleLink('/schedule')}>Schedule</h4>
+         </Col>
+     </Row>
     </>
     );
 }
