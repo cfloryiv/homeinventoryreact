@@ -1,5 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
 import {Col, Row} from 'react-bootstrap';
+import API from './api';
+
+interface APPT {date: string, time: string, name: string, idx: string};
 
 export function Schedule(props: any) {
     let times=[
@@ -13,33 +16,89 @@ export function Schedule(props: any) {
     for (let ndx=0; ndx<5; ndx++) {
         dates.push(new Date(startDate.getTime()+(ndx*24*60*60*1000)).toISOString().split('T')[0]);
     };
-    console.log(dates);
+    
     let weekDays=["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-    let appts: any[]=[];
+
+    const appts: APPT[]=[];
     times.forEach(time => {
         dates.forEach(date => {
-            let appt={
-                date,
-                time,
-                name: ""
-            };
+            let appt={ date, time, name: "", idx: ""};
             appts.push(appt);
-        });
+        })
     });
-    
     const [apptsx, setappts]=useState(appts);
+    const init = () => {
+        // create a clean slate for this week
+        const appts: APPT[]=[];
+        times.forEach(time => {
+            dates.forEach(date => {
+                let appt={ date, time, name: "", idx: ""};
+                appts.push(appt);
+            })
+        });
+        // query each date for this week to get previous data
+        dates.forEach(date => {
+            API.get(`api/dental/appts?date=${date}`)
+                .then(res => {
+                    
+                    res.data.forEach((appt: {date: string, time: string, name: string, _id: string}) => {
+                        let time=appt.time;
+                        let name=appt.name;
+                        let idx=appt._id;
+                        appts.find((apptx, index) => {
+                            if (apptx.date===date && apptx.time===time) {
+                                appts[index].name=name;
+                                appts[index].idx=idx;
+                                return;
+                            }
+                        })
+                    })
+                })
+        });
+        setappts(appts);
+       } ;
+
+    useEffect(() => {
+        init();
+    
+    }, [startDate]);
+
+
 
     const cellHandler = (tindex: number, dindex: number) => {
-        console.log(tindex, dindex);
-        let newappts=[...apptsx];
-        if (newappts[tindex*5+dindex].name==="") {
-            newappts[tindex*5+dindex].name=input;
+        let index: number=tindex*5+dindex
+        
+        const newappts=[...apptsx];
+        if (newappts[index].name==="") {
+            newappts[index].name=input;
+            newappts[index].idx="";
+            
+            API.post(`api/dental/appts`, newappts[index] )
+                .then(res=> {
+                    console.log(res.data);
+                    newappts[index].idx=res.data._id;
+                });
+        
         } else {
-            newappts[tindex*5+dindex].name="";
+            
+            let id=newappts[index].idx;
+            let cmd=`api/dental/appts/${id}`;
+            
+            API.delete(cmd)
+                .then(res=> {
+                    console.log("delete was sucessful");
+                    console.log(res.data);
+                })
+                .catch(function (error) {
+                    console.log("delete failed");
+                    console.log(error);
+                });
+            newappts[index].name="";
+            newappts[index].idx="";
         }
         
         setappts(newappts);
-        console.log(apptsx);
+        
     };
     let [input, setInput]=useState('');
 
