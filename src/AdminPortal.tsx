@@ -3,7 +3,7 @@ import { useHistory} from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 
 
-export function Navigation() {
+export function AdminPortal() {
 
   const history=useHistory();
 
@@ -15,37 +15,32 @@ export function Navigation() {
    
          <Row>
          <Col md={{ span: 6, offset: 1 }}>
-             <h4 onClick={() => handleLink('/inventoryreport')}>Inventory Report</h4>
+             <h4 onClick={() => handleLink('/patientprofile')}>Employees</h4>
          </Col>
      </Row>
      <Row>
          <Col md={{ span: 6, offset: 1 }}>
-             <h4 onClick={() => handleLink('/inventorysummary')}>Inventory Summary</h4>
+             <h4 onClick={() => handleLink('/patientschedule')}>Insurance</h4>
          </Col>
      </Row>
      <Row>
          <Col md={{ span: 6, offset: 1 }}>
-             <h4 onClick={() => handleLink('/inventoryform')}>New Inventory Item</h4>
+             <h4 onClick={() => handleLink('/patientbilling')}>Procedures</h4>
          </Col>
      </Row>
      <Row>
          <Col md={{ span: 6, offset: 1 }}>
-             <h4 onClick={() => handleLink('/schedule')}>Schedule</h4>
+             <h4 onClick={() => handleLink('/patientprocedures')}>Misc</h4>
          </Col>
      </Row>
      <Row>
          <Col md={{ span: 6, offset: 1 }}>
-             <h4 onClick={() => handleLink('/patientportal')}>Patient Portal</h4>
+             <h4 onClick={() => handleLink('/patientprocedures')}>Day End</h4>
          </Col>
      </Row>
      <Row>
          <Col md={{ span: 6, offset: 1 }}>
-             <h4 onClick={() => handleLink('/employeeportal')}>Employee Portal</h4>
-         </Col>
-     </Row>
-     <Row>
-         <Col md={{ span: 6, offset: 1 }}>
-             <h4 onClick={() => handleLink('/adminportal')}>Admin Portal</h4>
+             <h4 onClick={() => handleLink('/patientprocedures')}>Reporting</h4>
          </Col>
      </Row>
     </>

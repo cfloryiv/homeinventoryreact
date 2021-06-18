@@ -4,7 +4,7 @@ import API from './api';
 
 interface APPT {date: string, time: string, name: string, idx: string};
 
-export function Schedule(props: any) {
+export function Schedule(props: {allowUpdate: boolean}) {
     let times=[
         "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30",
         "12:00", "12:30", "1:00", "1:30", "2:00", "2:30", "3:00", "3:30",
@@ -67,7 +67,8 @@ export function Schedule(props: any) {
 
     const cellHandler = (tindex: number, dindex: number) => {
         let index: number=tindex*5+dindex
-        
+        if (!props.allowUpdate) return;
+
         const newappts=[...apptsx];
         if (newappts[index].name==="") {
             newappts[index].name=input;
